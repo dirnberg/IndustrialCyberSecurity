@@ -4,7 +4,7 @@
 % 
 % This template is set up to use the agsm Harvard referencing style by default.
 
-\documentclass[a4paper, 11pt]{scrartcl}
+\documentclass[12pt,a4paper,oneside,draft]{report}
  \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
  \usepackage[export]{adjustbox}
 
@@ -64,8 +64,8 @@
   enhanced,
 }
 
-
-
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
 
 \setlength{\parskip}{0.5em}
 
@@ -88,8 +88,6 @@
 %\includegraphics[width=0.33\textwidth]{img/ikarus_logo.png}
 Industrial Cyber Security}
 
-
-\subtitle{Practical Guide to Secure Industrial Internet of Things}
 
 % Add your name here:
 \author{Herbert Dirnberger}
@@ -121,10 +119,6 @@ Industrial Cyber Security}
 %\paragraph{Target Group and Scope}
 %This document is primarily intended for asset owners, system integrators and service operators in all sections of the asset life cycle: Requirement Engineering, Project planning, Procurement, System Integration and System Service and Operation
 
-
-
-\newpage
-%\setcounter{tocdepth}{3}
 \tableofcontents
 
 %\subsection{% \listoffigures generates a list of images used in the document.}
@@ -135,13 +129,10 @@ Industrial Cyber Security}
 % This is where your work goes!
 % The \markdownInput{} command inserts the contents of a Markdown file into the document body. The first file 
 
-
-\newpage
-\markdownInput{01-enterprise-iot.md}
-%\markdownInput{02-requirements.md}
-%\markdownInput{99-literatur.md}
-\newpage
-%\markdownInput{0a-appendix.md} 
+\markdownInput{0100-enterprise-iot.md}
+\markdownInput{0800-playbooks.md}
+\appendix
+\markdownInput{0900-glossary.md}
 %\bibliographystyle{plainnat}
 %\bibliography{references}
 
