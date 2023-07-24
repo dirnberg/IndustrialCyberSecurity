@@ -1,0 +1,148 @@
+% This template was provided for the 2019 Recording Project class at UWL.
+% It is designed to provide a simple, low-configuration starter template
+% for academic writing with LaTeX and Markdown.
+% 
+% This template is set up to use the agsm Harvard referencing style by default.
+
+\documentclass[a4paper, 11pt]{scrartcl}
+ \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+ \usepackage[export]{adjustbox}
+
+%\usepackage[german]{babel}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{fancyhdr, graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{csquotes}
+%\usepackage{natbib}
+\usepackage[footnotes,definitionLists,hashEnumerators,smartEllipses,hybrid,citations]{markdown}
+\usepackage{longtable}
+\usepackage{color}
+
+
+\usepackage{float}
+\usepackage{wasysym} % für die benutzten Symbole
+\usepackage[most]{tcolorbox}
+
+\usepackage{relsize}
+
+\usepackage[most]{tcolorbox}
+\newtcolorbox{mybox}[2][]{%
+  attach boxed title to top left
+               = {yshift=-8pt},
+  colback      = blue!5!white,
+  colframe     = blue!75!black,
+  fonttitle    = \bfseries,
+  colbacktitle = blue!85!black,
+  title        = #2,#1,
+  enhanced,
+}
+
+\newtcolorbox{gebox}[2][]{%
+  attach boxed title to top left
+               = {yshift=-8pt},
+  colback      = yellow!5!white,
+  colframe     = yellow!75!black,
+  fonttitle    = \bfseries,
+  colbacktitle = yellow!85!black,
+  title        = #2,#1,
+  enhanced,
+}
+
+
+\newtcolorbox{nabox}[2][]{%
+  attach boxed title to top left
+               = {yshift=-8pt},
+  colback      = red!5!white,
+  colframe     = red!75!black,
+  fonttitle    = \bfseries,
+  colbacktitle = red!85!black,
+  title        = #2,#1,
+  enhanced,
+}
+
+
+
+
+\setlength{\parskip}{0.5em}
+
+\newcommand{\hash}{\#} % Hashes are difficult in the Markdown environment. typing \hash within a Markdown document will give you a working hash instead.
+
+% A basic Harvard style is the agsm style. Other similar styles are apalike and lsalike.
+
+
+\bibliographystyle{ieeetr}
+%\bibliographystyle{agsm}
+\setkeys{Gin}{width=.95\linewidth}
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+
+% Add your report title here:
+
+
+\title{
+\vspace{-3cm}
+\hspace{10cm}
+\includegraphics[width=0.33\textwidth]{img/ikarus_logo.png}
+Secure Production Cell}
+
+
+\subtitle{Baseline of Security Conformance IEC 62443-3-3 SL1}
+
+% Add your name here:
+\author{Herbert Dirnberger}
+
+% The command below auto-generates today's date.
+\date{\today}
+
+% The \begin{} command tells LaTeX that we're starting the document.
+
+
+
+
+\begin{document}
+
+
+% \maketitle prints the title (as defined in the previous section) to the page.
+
+\maketitle
+% \newpage is fairly self-explanatory!
+% \newpage
+
+% \tableofcontents reads the whole document and auto-generates a table of contents based on your section headings.
+
+\setlength{\parindent}{0pt} 
+
+\paragraph{Executive Summary}
+By applying this baseline the conformance to the minimal requirements for secure system design from targeted IEC 62443-3-3 SL 1 for industrial control and automation systems in productions cells compliant to enterprise information security policy will be enabled.
+
+\paragraph{Target Group and Scope}
+This document is primarily intended for asset owners, system integrators and service operators in all sections of the asset life cycle: Requirement Engineering, Project planning, Procurement, System Integration and System Service and Operation
+
+
+
+\newpage
+%\setcounter{tocdepth}{3}
+\tableofcontents
+
+%\subsection{% \listoffigures generates a list of images used in the document.}
+%\listoffigures
+
+\pagenumbering{arabic}% Arabic page numbers (and reset to 1)
+
+% This is where your work goes!
+% The \markdownInput{} command inserts the contents of a Markdown file into the document body. The first file 
+
+
+\newpage
+\markdownInput{01-overview.md}
+\markdownInput{02-requirements.md}
+\markdownInput{99-literatur.md}
+\newpage
+%\markdownInput{0a-appendix.md} 
+%\bibliographystyle{plainnat}
+%\bibliography{references}
+
+\end{document}
