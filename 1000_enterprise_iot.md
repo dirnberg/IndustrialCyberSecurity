@@ -1,21 +1,26 @@
 # Enterprise IoT
-%
 
 ## Digital Production
-% 1.1
+
+### Technical Progress
+
+### Digital Terms
+
+### Digial Challenges
+
+### Business Aliggnment
+
+### Digital Strategies
 
 ## Industrial Internet of Things
-% 1.2
 
-% ### 1.2.1 Basics
+### Basics
 
-% %### % 1.2.3 ICS
+### Industrial Control Systems
 
 ### PLC
-% 1.2.4
 
 #### Real-time Execution
-% 1.2.4.1
 
 In today's industrial automation systems, a programmable logic controller (PLC) functions as a real-time embedded computer with extensive input/output capabilities. The PLC executes programs in a cyclical manner, following a set of tasks with specified cycle times to ensure timely and accurate control of processes. This document explores the concepts of real-time execution, cycle time, watchdog, and multitasking in industrial PLCs.
 
@@ -37,6 +42,9 @@ The watchdog function is a critical safety feature in PLCs. It involves the moni
 
 In the context of PLCs, multitasking refers to the capability of running multiple tasks concurrently. The IEC 61131 execution engine of a PLC consists of resources where one or more tasks can run simultaneously. Each task operates with its specific program, enabling efficient handling of various control tasks without interference. Multitasking allows the PLC to manage multiple processes effectively, meeting diverse industrial requirements.
 
+
+\hspace{2cm}
+
 ---
 
 **References**
@@ -48,4 +56,11 @@ TH Mittelessen, Grundwissen SPS-Technik
 
 [3] \url{https://tinyurl.com/mvzzxvay} --- Siemens S7-1500 Manual - cycle and reaction times 
 
-% TODO: excecution time sketch!
+\hspace{2cm}
+
+\begin{nabox}[colback=white]{ToDo}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+ \item Sketch Execution time
+\end{itemize}
+\end{nabox}
