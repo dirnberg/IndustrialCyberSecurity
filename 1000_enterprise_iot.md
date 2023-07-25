@@ -47,3 +47,5 @@ TH Mittelessen, Grundwissen SPS-Technik
 [2] \url{https://tinyurl.com/y6z4wt5t} --- Siemens Learning material on S7-1200 PLCs
 
 [3] \url{https://tinyurl.com/mvzzxvay} --- Siemens S7-1500 Manual - cycle and reaction times 
+
+% TODO: excecution time sketch!
