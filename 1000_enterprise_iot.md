@@ -64,3 +64,116 @@ TH Mittelessen, Grundwissen SPS-Technik
  \item Sketch Execution time
 \end{itemize}
 \end{nabox}
+
+\newpage
+#### Profinet
+
+**Industrial Ethernet Standard for Real-time Communication**
+
+Profinet is an Industrial Ethernet standard that provides real-time communication capabilities for automation applications. It is designed to meet the diverse requirements of different automation systems by offering different performance classes. Profinet enables the exchange of data between controllers and field devices, such as sensors and actuators, in a precise and time-sensitive manner. This article will explore Profinet's performance classes, network communication, special network requirements, and the ProfinetA tool.
+
+**Network Communication and Network Packets**
+
+Profinet uses Ethernet as the communication medium and relies on layer 2 of the OSI model for field-level real-time communication. Profinet packets are Ethernet frames with an **ethertype** value set to **0x8892**.
+
+- Profinet **DCP** (Discovery and Configuration Protocol): Facilitates the automatic detection and configuration of Profinet devices in the network. It allows devices to be identified and assigned IP addresses in a seamless manner.
+- Profinet **IO**: Enables the exchange of input and output data between controllers and field devices. It provides an isochronous communication channel for time-sensitive applications like motion control.
+
+**Special Network  and Switch Requirements**
+
+To ensure optimal Profinet network performance, certain network requirements and switch configurations must be met:
+- Network Segmentation: Separating the network into smaller segments improves efficiency, response times, security, and network management via Managed Switches (VLAN) and Firewwall/Routers.
+- Realtime Traffic Isolation: Real-time field-level traffic should be kept separate from enterprise IT traffic to avoid interference.
+
+**PronetA**
+
+PronetA from Siemens is a free tool that assists in configuring and testing Profinet networks. It automatically detects the network topology and displays connected Profinet devices, allowing for easy configuration, including IP address assignment and device naming. Moreover, ProfinetA's IO-Check feature enables the testing of network components for correct wiring and functionality before the entire system assembly.
+
+**Conclusion** 
+
+Profinet is a robust and flexible Industrial Ethernet standard that provides real-time communication for various automation applications. By understanding the different performance classes, network communication, and special requirements, engineers can design efficient and reliable Profinet networks to meet their automation needs.
+
+
+\hspace{2cm}
+
+**References**
+
+[1] \url{https://tinyurl.com/2p8uuert} ---
+Profinet Technologie
+
+[2] \url{https://tinyurl.com/y6z4wt5t} ---
+Siemens SCE Training S7-1200
+
+[3] \url{https://tinyurl.com/5e97jwvw} ---
+Intel TSN
+
+[4] \url{https://tinyurl.com/mtj6627z} ---
+PROFINET IO Conformance Classes
+
+[5] \url{https://tinyurl.com/y6v8r5sb} ---
+Neumann 2005 - Ethernet-based real-time communications with PROFINET IO
+
+[6] \url{https://tinyurl.com/2p8tzxa5} ---
+PROFINET device classes
+
+
+
+
+
+\newpage
+**Profinet Performance Classes** 
+
+
+Profinet is available in four performance classes: CC-A, CC-B, CC-C, and CC-D.
+
+\begin{greenbox}[colback=white]{CC-A}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+ \item Provides basic communication with cyclic real-time communication over IO and acyclic communication over TCP/IP.
+  \item Suitable for applications like building automation and commonly used in that domain.
+  \item Utilizes prioritization of Ethernet data packets using IEEE 802.1p (CoS) to ensure precise control in PROFINET systems.
+  \item Can be deployed with unmanaged switches but also supports managed switches.
+  \item Restricted to WLAN usage.
+\end{itemize}
+\end{greenbox}
+
+\begin{greenbox}[colback=white]{CC-B}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+\item Extends the functionality of CC-A with network diagnostics, topology information, redundancy, and dynamic reconfiguration.  
+\item Suitable for manufacturing and process automation applications.  
+\item Requires managed switches provides network diagnostics through SNMP and offers QoS (Quality of Service) and LLDP (Link Layer Discovery Protocol) support. Supports bandwith limitation and 802.1q (CoS)  
+\item Generic Station Description Markup Language - GSDML Support
+\end{itemize}
+\end{greenbox}
+
+\begin{greenbox}[colback=white]{CC-C}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+\item Builds upon CC-B by adding isochronous real-time (IRT) communication for motion control applications.
+\item Real-Time Data Exchange - cycle tis down to 31.25 $/mu s$
+\item Requires managed switches, and its real-time communication is based on IRT (Isochronous Real Time)
+\item  managed switches provides network diagnostics through SNMP and offers QoS (Quality of Service) and LLDP (Link Layer Discovery Protocol) support. Supports bandwith limitation and Supports bandwith limitation and 802.1q (CoS)
+\item Generic Station Description Markup Language - GSDML Support
+\item Precise synchronization using Profinet Time Communication Protocol (PTCP).
+\end{itemize}
+\end{greenbox}
+
+\begin{greenbox}[colback=white]{CC-D}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+\item Similar to CC-C in terms of functionality but implements Time-Sensitive Networking (TSN) standards for advanced real-time applications.
+\item Requires managed switches and supports bandwifths from 10 Mbit to 10 Gbit, including Wireless-Kommunikation (5G).
+\end{itemize}
+\end{greenbox}
+
+\hspace{2cm}
+
+
+
+
+
+
+
+
+
