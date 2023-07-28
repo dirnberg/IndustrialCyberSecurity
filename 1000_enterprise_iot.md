@@ -20,6 +20,7 @@
 
 ### PLC
 
+\newpage
 #### Real-time Execution
 
 In today's industrial automation systems, a programmable logic controller (PLC) functions as a real-time embedded computer with extensive input/output capabilities. The PLC executes programs in a cyclical manner, following a set of tasks with specified cycle times to ensure timely and accurate control of processes. This document explores the concepts of real-time execution, cycle time, watchdog, and multitasking in industrial PLCs.
@@ -65,25 +66,108 @@ TH Mittelessen, Grundwissen SPS-Technik
 \end{itemize}
 \end{nabox}
 
-\newpage
-#### Profinet
+#### Real-time Communication with Profinet IO
 
 **Industrial Ethernet Standard for Real-time Communication**
 
-Profinet is an Industrial Ethernet standard that provides real-time communication capabilities for automation applications. It is designed to meet the diverse requirements of different automation systems by offering different performance classes. Profinet enables the exchange of data between controllers and field devices, such as sensors and actuators, in a precise and time-sensitive manner. This article will explore Profinet's performance classes, network communication, special network requirements, and the ProfinetA tool.
+Profinet IO is an Industrial Ethernet standard that provides real-time communication capabilities for automation applications. It is designed to meet the diverse requirements of different automation systems by offering different performance classes. Profinet IO enables the exchange of data between controllers and field devices, such as sensors and actuators, in a precise and time-sensitive manner. This article will explore Profinet's performance classes, network communication, special network requirements.
+
+**Profinet Performance Classes** 
+
+
+Profinet is available in four performance classes: CC-A, CC-B, CC-C, and CC-D.
+
+\begin{greenbox}[colback=white]{CC-A}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+ \item Provides basic communication with cyclic real-time communication over IO and acyclic communication over UDP.
+  \item Suitable for applications like building automation and commonly used in that domain.
+  \item Utilizes prioritization of Ethernet data packets using IEEE 802.1p (CoS) to ensure precise control in PROFINET systems.
+  \item Can be deployed with unmanaged switches but also supports managed switches.
+  \item Restricted to WLAN usage.
+  \item Non-isochronous TCP/IP, RT Real-Time Class 1
+\end{itemize}
+\end{greenbox}
+
+
+\begin{greenbox}[colback=white]{CC-B}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+\item Extends the functionality of CC-A with network diagnostics, topology information, redundancy, and dynamic reconfiguration.  
+\item Suitable for manufacturing and process automation applications.  
+\item Requires managed switches provides network diagnostics through SNMP and offers QoS (Quality of Service) and LLDP (Link Layer Discovery Protocol) support. Supports bandwith limitation and 802.1q (CoS)  
+\item Supports Media Redundancy Protocol (MRP) for network reliability.
+\item Generic Station Description Markup Language - GSDML Support
+\item Non-isochronous TCP/IP, RT Real-Time Class 1
+\end{itemize}
+\end{greenbox}
+
+
+\begin{greenbox}[colback=white]{CC-C}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+\item Builds upon CC-B by adding isochronous real-time (IRT) communication for motion control applications.
+\item Real-Time Data Exchange - cycle tis down to 31.25 $/mu s$
+\item Requires managed switches, and its real-time communication is based on IRT (Isochronous Real Time)
+\item  managed switches provides network diagnostics through SNMP and offers QoS (Quality of Service) and LLDP (Link Layer Discovery Protocol) support. Supports bandwith limitation and Supports bandwith limitation and 802.1q (CoS)
+\item Generic Station Description Markup Language - GSDML Support
+\item Precise synchronization using Profinet Time Communication Protocol (PTCP).
+\item Non-isochronous + isochronous TCP/IP, RT, IRT Real-Time Class 1, 2, 3
+\end{itemize}
+\end{greenbox}
+
+\begin{greenbox}[colback=white]{CC-D}
+\begin{itemize}
+ \renewcommand{\labelitemi}{$\Square$} 
+\item Similar to CC-C in terms of functionality but implements Time-Sensitive Networking (TSN) standards for advanced real-time applications.
+\item Requires managed switches and supports bandwifths from 10 Mbit to 10 Gbit, including Wireless-Kommunikation (5G).
+\end{itemize}
+\end{greenbox}
+
+\hspace{2cm}
+
 
 **Network Communication and Network Packets**
 
-Profinet uses Ethernet as the communication medium and relies on layer 2 of the OSI model for field-level real-time communication. Profinet packets are Ethernet frames with an **ethertype** value set to **0x8892**.
+Profinet IO utilizes Ethernet for communication, and its packets are Ethernet frames with Ethertype set to 0x8892. TCP/IP is implemented for process data exchange, and different communication channels are used for various tasks.
 
-- Profinet **DCP** (Discovery and Configuration Protocol): Facilitates the automatic detection and configuration of Profinet devices in the network. It allows devices to be identified and assigned IP addresses in a seamless manner.
-- Profinet **IO**: Enables the exchange of input and output data between controllers and field devices. It provides an isochronous communication channel for time-sensitive applications like motion control.
+Services on **Ethertype 0x8892** in Profinet IO
 
-**Special Network  and Switch Requirements**
+**PTCP (Profinet Time Communication Protocol)** is responsible for precise time synchronization in a Profinet network. It ensures accurate clock synchronization among devices, crucial for time-critical applications like motion control and coordinated processes.
 
-To ensure optimal Profinet network performance, certain network requirements and switch configurations must be met:
-- Network Segmentation: Separating the network into smaller segments improves efficiency, response times, security, and network management via Managed Switches (VLAN) and Firewwall/Routers.
-- Realtime Traffic Isolation: Real-time field-level traffic should be kept separate from enterprise IT traffic to avoid interference.
+**Real-Time Acyclic Communication** in Profinet IO allows non-cyclic data exchange between devices and the controller. It is used for parameterization, configuration, and acyclic read/write operations, enabling the transfer of non-time-critical data.
+
+**Real-Time Cyclic Communication (Class 1, 2, 3)** providing different levels of performance and determinism. These classes are used for standard cyclic data transfer and alarms, catering to various real-time requirements in automation applications.
+
+**DCP (Discovery and Configuration Protocol)** facilitates the automatic detection and configuration of Profinet devices within the network. It allows the I/O controller to identify switches and set device names and IP addresses automatically, streamlining the configuration process.
+
+These services, operating on Ethertype 0x8892, form the backbone of Profinet IO's communication capabilities, ensuring precise and efficient data exchange for various automation tasks.
+
+Services on **Ethertype 0x88e3** in Profinet IO for PN MRP
+
+**PN MRP (Profinet Media Redundancy Protocol)** is a redundancy mechanism that enhances the reliability and fault tolerance of Profinet IO networks. It ensures seamless communication even in the event of link failures by providing network redundancy. Devices in the network use PN MRP to detect and recover from link failures quickly, minimizing downtime and improving network robustness. It plays a vital role in mission-critical applications where network uptime is essential for continuous operation and safety.
+
+**Typical Wireshark Display Filter for Profinet IO**: 
+
+*eth.type == 0x8892 or
+eth.type == 0x8893 or
+lldp or
+arp or
+dcerpc or
+snmp or
+dhcp or
+pnio or
+pnrt*
+
+\hspace{2cm}
+
+
+**Special Network and Switch Requirements**
+
+To ensure efficient and reliable communication in a Profinet IO network, **network segmentation is crucial**. Separating field-level traffic from control-level or enterprise IT traffic enhances security and simplifies network management. PROFINET IO also supports managed Switches with VLANs, firewalls and routers for enhanced network performance and security.
+
+\hspace{2cm}
+
 
 **PronetA**
 
@@ -115,65 +199,3 @@ Neumann 2005 - Ethernet-based real-time communications with PROFINET IO
 
 [6] \url{https://tinyurl.com/2p8tzxa5} ---
 PROFINET device classes
-
-
-
-
-
-\newpage
-**Profinet Performance Classes** 
-
-
-Profinet is available in four performance classes: CC-A, CC-B, CC-C, and CC-D.
-
-\begin{greenbox}[colback=white]{CC-A}
-\begin{itemize}
- \renewcommand{\labelitemi}{$\Square$} 
- \item Provides basic communication with cyclic real-time communication over IO and acyclic communication over TCP/IP.
-  \item Suitable for applications like building automation and commonly used in that domain.
-  \item Utilizes prioritization of Ethernet data packets using IEEE 802.1p (CoS) to ensure precise control in PROFINET systems.
-  \item Can be deployed with unmanaged switches but also supports managed switches.
-  \item Restricted to WLAN usage.
-\end{itemize}
-\end{greenbox}
-
-\begin{greenbox}[colback=white]{CC-B}
-\begin{itemize}
- \renewcommand{\labelitemi}{$\Square$} 
-\item Extends the functionality of CC-A with network diagnostics, topology information, redundancy, and dynamic reconfiguration.  
-\item Suitable for manufacturing and process automation applications.  
-\item Requires managed switches provides network diagnostics through SNMP and offers QoS (Quality of Service) and LLDP (Link Layer Discovery Protocol) support. Supports bandwith limitation and 802.1q (CoS)  
-\item Generic Station Description Markup Language - GSDML Support
-\end{itemize}
-\end{greenbox}
-
-\begin{greenbox}[colback=white]{CC-C}
-\begin{itemize}
- \renewcommand{\labelitemi}{$\Square$} 
-\item Builds upon CC-B by adding isochronous real-time (IRT) communication for motion control applications.
-\item Real-Time Data Exchange - cycle tis down to 31.25 $/mu s$
-\item Requires managed switches, and its real-time communication is based on IRT (Isochronous Real Time)
-\item  managed switches provides network diagnostics through SNMP and offers QoS (Quality of Service) and LLDP (Link Layer Discovery Protocol) support. Supports bandwith limitation and Supports bandwith limitation and 802.1q (CoS)
-\item Generic Station Description Markup Language - GSDML Support
-\item Precise synchronization using Profinet Time Communication Protocol (PTCP).
-\end{itemize}
-\end{greenbox}
-
-\begin{greenbox}[colback=white]{CC-D}
-\begin{itemize}
- \renewcommand{\labelitemi}{$\Square$} 
-\item Similar to CC-C in terms of functionality but implements Time-Sensitive Networking (TSN) standards for advanced real-time applications.
-\item Requires managed switches and supports bandwifths from 10 Mbit to 10 Gbit, including Wireless-Kommunikation (5G).
-\end{itemize}
-\end{greenbox}
-
-\hspace{2cm}
-
-
-
-
-
-
-
-
-
