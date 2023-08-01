@@ -29,6 +29,9 @@ In today's industrial automation systems, a programmable logic controller (PLC) 
 
 Real-time execution in PLCs involves the periodic operation of the controller. It follows a specific sequence of steps, including sampling sensor signals, converting them to digital form using analog-to-digital converters (A/D converters), computing control signals, converting them to analog form for actuators, and updating controller variables. The PLC operates by waiting for clock interrupts, and at each interval, it performs the designated tasks in a prescribed order to maintain control over the process.
 
+\floatplacement{figure}{H}
+![blueprint](ressources/img/plc_realtime.png "PLC Real-Time Execution Time Diagram and Pseudo Code ") 
+
 **Cycle Time**
 
 The cycle time of a PLC refers to the time required to complete one full execution cycle of the program. It encompasses all the steps involved in real-time execution, including reading inputs, computing control signals, sending outputs, and updating variables. The cycle time directly impacts the responsiveness and efficiency of the PLC in controlling industrial processes. It is essential to optimize the cycle time for efficient operation.
