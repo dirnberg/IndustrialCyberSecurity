@@ -10,6 +10,57 @@
 
 ### Business Aliggnment
 
+*Technology Alignment: Overcoming Challenges in IT/OT Convergence for Industrial Internet of Things (IIoT)*
+
+Michael Ghezzo's story from the Raumschiff Enterprise illustrates the technological disparity between the bridge and the engine room, causing critical failures during crucial moments. Today, the convergence of Information Technology (IT) and Operational Technology (OT) for the Industrial Internet of Things (IIoT) presents significant opportunities for digitalization, but also brings forth complex technical and organizational challenges.
+
+**Definition of IT Business Alignment**
+
+IT Business Alignment is the process of harmonizing IT strategies and initiatives with the business objectives of an organization. It ensures that IT investments and efforts are directly contributing to the organization's success and value creation. The equation IT x OT = IOT$^2$ $\rightarrow$ IIoT represents the current trend towards the IIoT, where IT and OT are integrated to leverage digitalization.
+
+**IT as a Value Contributor**
+
+IT should never be pursued as a standalone goal; instead, it must be seen as a value contributor to the organization's success. IT governance is a combination of IT Business Alignment and IT Compliance, ensuring that IT services and initiatives align with business objectives and comply with regulatory requirements.
+
+\floatplacement{figure}{H}
+![blueprint](ressources/img/itba.png "Enterprise Architecture Management with IT Business Alignment") 
+
+
+
+**Changes and Challenges from IT/OT Convergence**
+
+The convergence of IT and OT brings significant changes to the digital landscape, but it also introduces challenges due to increasing complexity. Poorly secured IoT components and unclear supply chains in cloud infrastructures become potential entry points for cyberattacks. The introduction of malware, connectivity issues, and system crashes can disrupt operations, leading to production downtime, organizational inefficiencies, and reputational damage.
+
+**Positive Development Recommendations**
+
+To capitalize on the opportunities presented by IT/OT convergence and promote positive development, organizations need to understand both IT and OT realms. The concept of providing IT services involves transforming a technology-focused IT department into a strategic service organization. This alignment can be achieved through:
+
+- Understanding Business Objectives: Align IT strategies and initiatives with the organization's overall business objectives and goals.
+- Supporting Business Processes: Ensure that IT services support and enhance the organization's key business processes.
+- Enhancing IT Service Management: Develop efficient IT service processes, applications, and infrastructure to deliver seamless support to business operations.
+- Prioritizing Security: Implement robust security measures to safeguard against cyber threats and vulnerabilities, especially with the increasing interconnection between IT and OT systems.
+
+**Conclusion**
+
+Today, successful technology alignment requires a holistic approach to bridge the gap between IT and OT. Embracing the opportunities of IT/OT convergence while addressing the challenges through strategic planning and comprehensive security measures will empower organizations to thrive in the era of IIoT.
+
+**References**
+
+https://confare.at/sicherere-it-ot-konvergenz-herbert-dirnberger/
+
+https://www.cio.de/a/was-ist-it-business-alignment,3667987
+
+https://www.gabler-banklexikon.de/definition/it-alignment-70785
+
+https://www.uni-bamberg.de/isdl/transfer/it-business-alignment/
+
+https://blogs.cisco.com/government/necessity-it-ot-alignment
+
+https://www.mckinsey.com/capabilities/operations/our-insights/converge-it-and-ot-to-turbocharge-business-operations-scaling-power
+
+https://www.valion.ch/2019/09/20/transformation-priorisierung/
+
+
 ### Digital Strategies
 
 ## Industrial Internet of Things
@@ -17,6 +68,114 @@
 ### Basics
 
 ### Industrial Control Systems
+
+#### Device Naming Convention
+
+When building an Asset Inventory for Operational Technology (OT) or Industrial Control Systems, the topic of Device Naming Convention becomes crucial. It aims to address two main objectives: a) uniquely identify devices, and b) reduce the possibility of device naming conflicts. Additionally, it is essential to adhere to the 15-character limit imposed by Microsoft Active Directory.
+
+Considering that cost centers or department names often change, maintaining a long-lasting device name is not conducive. Any change in the device name requires significant documentation efforts. Therefore, it is recommended to formalize the Device Naming Convention by the industrial end-customer and implement it by the System Integrator according to the client's requirements.
+
+Ensuring unique device naming is of utmost importance as it is not always guaranteed or kept up-to-date in practice. Registering all devices on the Domain Name System (DNS) and using it as the single Point of Truth for name resolution with IP addresses is common in OT. It is essential to focus on systems in Purdue Level 1 since they communicate with the enterprise landscape through routers.
+
+The Device Naming Convention and the unique name of the devices play a critical role in establishing a Configuration Management Database (CMDB) or Asset Inventories. Additionally, when utilizing OT Security Sensors like the OT Security Sensor Guardian by Nozomi Networks, unique and standardized naming conventions become even more crucial.
+
+**Location-Based Device Naming Convention:**
+
+\floatplacement{figure}{H}
+![blueprint](ressources/img/ot_device_naming.png "Location-Based Device Naming Convention") 
+
+
+
+One effective approach is to follow the concept of location-based identifiers used in electrical engineering. It is suitable for fixed cabled devices in Purdue Levels 0, 1, and 2. For Purdue Levels 3, 3.5, 4, and 5, and mobile devices, an adapted version can be used.
+
+All names, including device, location, and cell names, should be written in lowercase.
+
+The Cell name is constructed using the following key components:
+Cell = LOC + BDG + CID
+
+A unique name key is then formed as:
+DEV-CELL-IDX
+
+Where:
+
+- DEV represents the Device Type (max 3 characters)
+- LOC is the Location/Site Code (max 3 characters)
+- BDG is the Building Code (max 3 characters)
+- CID is the Cell index (max 3 characters)
+- IDX is the Device Index
+
+For instance:
+
+- ifw-vieh81a: Industrial Firewall in the cell "vieh81a," Purdue Level 2.5
+- isw-vieh81a-1: Industrial Switch in the cell "vieh81a," Purdue Level 1.5
+- plc-vieh81a-t1: PLC in the cell "vieh81a," Transportation, Purdue Level 1
+
+**Lists of Device Types and Locations/Sites**
+
+Device Types:
+
+- wks Workstation
+- mob Mobile (Notebook, Tablet, ...)
+- srv Server
+- plc Programmable Logic Controller
+- rob Robot
+- rtu Remote Terminal Unit
+- ied Intelligent Electronic Device
+- sis Safety Instrumented System
+- cam Camera
+- prn Printer/Laser
+- scn Scanner
+- iro Industrial Router
+- igw Industrial Gateway
+- isw Industrial Switch
+- wap Wireless Access Point
+- hmi Human Machine Interface
+- ups Uninterruptible Power Supply
+- cnc Computer Numerical Controller
+
+Locations/Sites:
+
+- VIE Vienna
+- FRA Frankfurt
+- BER Berlin
+- OSL Oslo
+
+Building Abbreviations:
+
+- h01 Hall 1
+- h02 Hall 2
+- hg1 Hall G1
+- hk4 Hall K4
+
+Example Cell Names:
+
+- vieh81a: Location Vienna, Hall 81, cell a
+- vieh81c: Location Vienna, Hall 81, cell c
+- oslhg1f: Location Oslo, Hall G1, cell f
+- frao12d: Location Frankfurt, Object 12, Cell d
+
+**Application of the Naming Convention**
+
+The device name can be constructed by combining the Device Type, Cell name, and Index. For example:
+- mob-vieh02m-3: Mobile, Standort Vienna, Home Halle 2, Maintenance - Index 3
+
+For devices running in data centers, the naming schema can be adapted, such as:
+
+- srv-viedc1g-his: Server Historian, Standort Vienna, Datacenter, Cell g
+- srv-viedc1f-log: Server Logging, Standort Vienna, Datacenter, Cell f
+
+The naming convention allows for easy organization and identification of devices and their specific locations, facilitating device management and asset tracking in industrial environments.
+
+**Additional Sources**
+
+[LinkedIn - Gemeinsam für sichere Produktionsumgebungen](https://www.linkedin.com/pulse/gemeinsam-für-sichere-produktionsumgebungen-herbert-dirnberger/)
+
+[LinkedIn - Ralph Langner UML Search Results](https://www.linkedin.com/search/results/content/?keywords=Ralph%20Langner%20UML&sid=V2C&update=urn%3Ali%3Afs_updateV2%3A(urn%3Ali%3Aactivity%3A7093885940024107008%2CBLENDED_SEARCH_FEED%2CEMPTY%2CDEFAULT%2Cfalse))
+  
+[IEC 62443 Security Level 1 PDF](https://github.com/dirnberg/purdue_next/blob/main/IEC_62443_Security_Level_1.pdf)
+  
+[OT Security Sensor Guardian by Nozomi Networks](https://www.ikarussecurity.com/industrial-cyber-security/ot-security-sensor-guardian-by-nozomi-networks/)
+
 
 ### PLC
 
